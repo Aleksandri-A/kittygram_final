@@ -37,6 +37,18 @@ docker compose up
 docker compose exec backend python manage.py migrate
 ```
 
+Выполните команду сборки статики. После этого выполните команду копирования собранных файлов в /backend_static/static/ — перенесите файлы не в /backend_static/, а во вложенную папку: так адреса файлов для Nginx совпадут с адресами статических файлов, которые ожидает Django-проект.
+```
+# Собрать статику Django
+docker compose exec backend python manage.py collectstatic
+# Статика приложения в контейнере backend 
+# будет собрана в директорию /app/collected_static/.
+
+# Теперь из этой директории копируем статику в /backend_static/static/;
+# эта статика попадёт на volume static в папку /static/:
+docker compose exec backend cp -r /app/collected_static/. /backend_static/static/ 
+```
+
 ## Деплой: публикация проекта в Docker на сервере
 
 Поочерёдно выполните на сервере команды для установки Docker и Docker Compose для Linux.
