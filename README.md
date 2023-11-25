@@ -65,11 +65,13 @@ sudo apt-get install docker-compose-plugin
 
 Создайте файл .env и внесите ваши данные:
 ```
-POSTGRES_DB=kittygram
-POSTGRES_USER=kittygram_user
-POSTGRES_PASSWORD=kittygram_password
-DB_PORT=5432
-DB_HOST=db
+POSTGRES_DB
+POSTGRES_USER
+POSTGRES_PASSWORD
+DB_PORT
+DB_HOST
+SECRET_KEY
+ALLOWED_HOSTS
 ```
 Для запуска Docker Compose в режиме демона команду выполните эту команду на сервере в папке kittygram/:
 ```
